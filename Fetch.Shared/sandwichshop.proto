@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+option csharp_namespace = "Fetch.Shared";
+
+import "google/protobuf/Empty.proto";
+
+// The SandwichShopService service definition.
+service SandwichShopService {
+  // Creates a new Sandwich Shop
+  rpc CreateSandwichShop(CreateSandwichShopRequest) returns (SandwichShopResponse);
+
+  // Retrieves a Sandwich Shop by ID
+  rpc GetSandwichShop(GetSandwichShopRequest) returns (SandwichShopResponse);
+
+  // Retrieves all Sandwich Shops
+  rpc GetAllSandwichShops(google.protobuf.Empty) returns (GetAllSandwichShopsResponse);
+
+  // Updates a Sandwich Shop
+  rpc UpdateSandwichShop(UpdateSandwichShopRequest) returns (SandwichShopResponse);
+
+  // Deletes a Sandwich Shop
+  rpc DeleteSandwichShop(DeleteSandwichShopRequest) returns (google.protobuf.Empty);
+}
+
+// The request message for creating a sandwich shop.
+message CreateSandwichShopRequest {
+  SandwichShop sandwichShop = 1;
+}
+
+// The request message for updating a sandwich shop.
+message UpdateSandwichShopRequest {
+  SandwichShop sandwichShop = 1;
+}
+
+// The request message for deleting a sandwich shop.
+message DeleteSandwichShopRequest {
+  int32 id = 1;
+}
+
+// The request message containing the ID of the sandwich shop.
+message GetSandwichShopRequest {
+  int32 id = 1;
+}
+
+// The response message containing the details of a sandwich shop.
+message SandwichShopResponse {
+  SandwichShop sandwichShop = 1;
+}
+
+// The response message containing a list of sandwich shops.
+message GetAllSandwichShopsResponse {
+  repeated SandwichShop sandwichShops = 1;
+}
+
+// The sandwich shop representation.
+message SandwichShop {
+  int32 id = 1;
+  string shop = 2;
+  repeated SandwhichLocation address = 3;
+  string specialty = 4;
+}
+
+message SandwhichLocation {
+	int32 id = 1;
+	int32 shop_id = 2;
+	string address = 3;
+}
