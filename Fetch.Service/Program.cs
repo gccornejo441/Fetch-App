@@ -1,6 +1,5 @@
 using Fetch.Service.Data;
 using Fetch.Service.Services;
-using Fetch.Service.TestServices;
 using Fetch.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -23,7 +22,6 @@ namespace Fetch.Service
             }
             builder.Services.AddDbContext<FetchContext>(options =>
                             options.UseNpgsql(connectionString));
-            builder.Services.AddScoped<ShopService>();
             builder.Services.AddHttpClient();
             var app = builder.Build();
 
